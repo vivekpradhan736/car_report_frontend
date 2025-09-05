@@ -123,7 +123,7 @@ export const CarHealthReportForm = () => {
 
   const saveReport = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/reports", carData,{ withCredentials: true });
+      const response = await axios.post("https://car-report-backend-5vpj.onrender.com/api/reports", carData,{ withCredentials: true });
       if (response.status === 201) {
         const newReport = response.data;
         toast.success("Car health report saved successfully!");

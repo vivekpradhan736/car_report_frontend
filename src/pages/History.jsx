@@ -17,7 +17,7 @@ export default function History() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/reports", { withCredentials: true });
+        const res = await axios.get("https://car-report-backend-5vpj.onrender.com/api/reports", { withCredentials: true });
         setReports(res.data);
         console.log("res",res)
       } catch (err) {
@@ -45,7 +45,7 @@ const handleDeleteReport = async (reportId) => {
   if (!confirmDelete) return
 
   try {
-    await axios.delete(`http://localhost:5000/api/reports/${reportId}`, { withCredentials: true })
+    await axios.delete(`https://car-report-backend-5vpj.onrender.com/api/reports/${reportId}`, { withCredentials: true })
     setReports((prevReports) => prevReports.filter((r) => r._id !== reportId))
   } catch (err) {
     console.error("Error deleting report:", err)
@@ -56,7 +56,7 @@ const handleDeleteReport = async (reportId) => {
 // 📥 Download Report PDF
 const handleDownloadPDF = async (reportId) => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/reports/${reportId}/pdf`, {
+    const res = await axios.get(`https://car-report-backend-5vpj.onrender.com/api/reports/${reportId}/pdf`, {
       responseType: "blob", // important for file download
       withCredentials: true,
     })
