@@ -9,6 +9,8 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,7 +19,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axios.post("https://car-report-backend-5vpj.onrender.com/api/auth/login", {
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password,
       }, {
@@ -33,6 +35,7 @@ const Login = () => {
         navigate("/");
       }
     } catch (err) {
+      console.log("error", err)
       setError(err.response?.data?.message || "Login failed. Try again.");
     } finally {
       setLoading(false);

@@ -75,6 +75,8 @@ export const CarHealthReportForm = () => {
   const [inputValue, setInputValue] = useState("");
   const [serviceInputValue, setServiceInputValue] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleInputChange = (field: keyof CarHealthData, value: string) => {
     setCarData(prev => ({
       ...prev,
@@ -123,7 +125,7 @@ export const CarHealthReportForm = () => {
 
   const saveReport = async () => {
     try {
-      const response = await axios.post("https://car-report-backend-5vpj.onrender.com/api/reports", carData,{ withCredentials: true });
+      const response = await axios.post(`${API_URL}/api/reports`, carData,{ withCredentials: true });
       if (response.status === 201) {
         const newReport = response.data;
         toast.success("Car health report saved successfully!");

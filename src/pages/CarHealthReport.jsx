@@ -7,6 +7,7 @@ import { CarHealthReportPDF } from "../components/CarHealthReportPDF";
 import { Download } from "lucide-react";
 
 const CarHealthReport = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ const CarHealthReport = () => {
   useEffect(() => {
     const fetchReport = async () => {
       try {
-        const response = await axios.get(`https://car-report-backend-5vpj.onrender.com/api/reports/${id}`);
+        const response = await axios.get(`${API_URL}/api/reports/${id}`);
         setData(response.data);
         setLoading(false);
       } catch (err) {
